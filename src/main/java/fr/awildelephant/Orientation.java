@@ -19,6 +19,11 @@ public enum Orientation {
         public Orientation turnRight() {
             return SOUTH;
         }
+
+        @Override
+        public String toString() {
+            return "E";
+        }
     }, NORTH {
         @Override
         public Position advance(Position start) {
@@ -34,6 +39,12 @@ public enum Orientation {
         public Orientation turnRight() {
             return EAST;
         }
+
+        @Override
+        public String toString() {
+            return "N";
+        }
+
     }, SOUTH {
         @Override
         public Position advance(Position start) {
@@ -49,6 +60,11 @@ public enum Orientation {
         public Orientation turnRight() {
             return WEST;
         }
+
+        @Override
+        public String toString() {
+            return "S";
+        }
     }, WEST {
         @Override
         public Position advance(Position start) {
@@ -63,6 +79,11 @@ public enum Orientation {
         @Override
         public Orientation turnRight() {
             return NORTH;
+        }
+
+        @Override
+        public String toString() {
+            return "W";
         }
     };
 
