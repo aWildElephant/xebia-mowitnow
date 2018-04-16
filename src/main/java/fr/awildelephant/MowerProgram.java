@@ -2,12 +2,15 @@ package fr.awildelephant;
 
 public class MowerProgram {
 
+    private final Map map;
+
     private Position currentPosition;
     private Orientation currentOrientation;
 
-    MowerProgram(Position startingPosition, Orientation startingOrientation) {
-        currentPosition = startingPosition;
-        currentOrientation = startingOrientation;
+    MowerProgram(Map map, Position startingPosition, Orientation startingOrientation) {
+        this.map = map;
+        this.currentPosition = startingPosition;
+        this.currentOrientation = startingOrientation;
     }
 
     void turnRight() {
@@ -19,7 +22,11 @@ public class MowerProgram {
     }
 
     void advance() {
-        currentPosition = currentOrientation.advance(currentPosition);
+        final Position targetPosition = currentOrientation.advance(currentPosition);
+
+        if (map.isWithinBounds(targetPosition)) {
+            currentPosition = targetPosition;
+        }
     }
 
     @Override

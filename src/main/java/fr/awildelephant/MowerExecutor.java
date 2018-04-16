@@ -21,25 +21,25 @@ final class MowerExecutor {
     }
 
     private String execute() {
-        input.nextInt();
-        input.nextInt();
+        final int topRightCornerX = input.nextInt();
+        final int topRightCornerY = input.nextInt();
 
-        // TODO: if the move would make the mower out of bounds, do not move and execute next instruction
+        final Map map = new Map(position(topRightCornerX, topRightCornerY));
 
-        return executeAllMowerPrograms();
+        return executeAllMowerPrograms(map);
     }
 
-    private String executeAllMowerPrograms() {
+    private String executeAllMowerPrograms(Map map) {
         final StringJoiner joiner = new StringJoiner("\n");
 
         while (input.hasNextInt()) {
-            joiner.add(executeSingleMowerProgram());
+            joiner.add(executeSingleMowerProgram(map));
         }
 
         return joiner.toString();
     }
 
-    private String executeSingleMowerProgram() {
+    private String executeSingleMowerProgram(Map map) {
         final int x = input.nextInt();
         final int y = input.nextInt();
         final String orientationSymbol = input.next();
@@ -47,7 +47,7 @@ final class MowerExecutor {
         final Position startingPosition = position(x, y);
         final Orientation startingOrientation = orientation(orientationSymbol);
 
-        final MowerProgram program = new MowerProgram(startingPosition, startingOrientation);
+        final MowerProgram program = new MowerProgram(map, startingPosition, startingOrientation);
 
         goToInstructionsLine();
 
@@ -75,8 +75,8 @@ final class MowerExecutor {
         return program.toString();
     }
 
-    private String goToInstructionsLine() {
-        return input.nextLine();
+    private void goToInstructionsLine() {
+        input.nextLine();
     }
 
     private Orientation orientation(String symbol) {

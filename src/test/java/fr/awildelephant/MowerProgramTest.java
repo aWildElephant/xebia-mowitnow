@@ -13,7 +13,7 @@ class MowerProgramTest {
 
     @BeforeEach
     void setUp() {
-        program = new MowerProgram(position(1, 1), NORTH);
+        program = new MowerProgram(new Map(position(2, 3)), position(1, 1), NORTH);
     }
 
     @Test
@@ -40,6 +40,15 @@ class MowerProgramTest {
         program.advance();
 
         assertProgramOutputs("1 2 N");
+    }
+
+    @Test
+    void advance_should_not_move_the_mower_if_it_would_make_it_out_of_bounds() {
+        program.turnLeft();
+        program.advance();
+        program.advance();
+
+        assertProgramOutputs("0 1 W");
     }
 
     private void assertProgramOutputs(String s) {
