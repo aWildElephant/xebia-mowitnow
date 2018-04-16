@@ -24,7 +24,7 @@ final class MowerExecutor {
         input.nextInt();
         input.nextInt();
 
-        // TODO: map height and width is given but not used. I'm guessing we want to react if the mower becomes out of bounds.
+        // TODO: if the move would make the mower out of bounds, do not move and execute next instruction
 
         return executeAllMowerPrograms();
     }
@@ -49,12 +49,13 @@ final class MowerExecutor {
 
         final MowerProgram program = new MowerProgram(startingPosition, startingOrientation);
 
-        input.nextLine(); // Go to the instructions line
+        goToInstructionsLine();
 
         final String instructions = input.nextLine();
 
+        char action;
         for (int i = 0; i < instructions.length(); i++) {
-            char action = instructions.charAt(i);
+            action = instructions.charAt(i);
 
             switch (action) {
                 case 'A':
@@ -74,9 +75,12 @@ final class MowerExecutor {
         return program.toString();
     }
 
+    private String goToInstructionsLine() {
+        return input.nextLine();
+    }
+
     private Orientation orientation(String symbol) {
-        char character = symbol.charAt(0);
-        switch (character) {
+        switch (symbol.charAt(0)) {
             case 'E':
                 return EAST;
             case 'N':

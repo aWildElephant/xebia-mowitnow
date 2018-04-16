@@ -2,7 +2,6 @@ package fr.awildelephant;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 
 import static fr.awildelephant.Orientation.NORTH;
 import static fr.awildelephant.Position.position;
